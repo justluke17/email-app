@@ -1,113 +1,173 @@
-import Image from 'next/image'
+import { Search, Inbox, Target, Send, FileText, Trash2, Shield, Settings } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent } from "@/components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge" 
 
-export default function Home() {
+export default function SponsorInbox() {
+  const sidebarItems = [
+    { icon: Inbox, label: "Main Inbox", active: true },
+    { icon: Target, label: "Similar to your Niche" },
+    { icon: Send, label: "Sent" },
+    { icon: FileText, label: "Drafts" },
+    { icon: Shield, label: "Spam" },
+    { icon: Trash2, label: "Trash" },
+  ]
+
+  const sponsorshipRequests = [
+    {
+      id: 1,
+      company: "TechBrand Inc.",
+      title: "Sponsorship Request: TechBrand Inc.",
+      avatar: "/placeholder.svg?height=40&width=40",
+      timeAgo: "2 days ago",
+      risk: "Low",
+      summary:
+        "This is a sponsorship opportunity from a well-known brand in the tech industry. They are looking for a creator to promote their new product launch. The budget is $5,000.",
+      riskColor: "bg-green-500",
+    },
+    {
+      id: 2,
+      company: "GameDev Studio",
+      title: "Sponsorship Request: GameDev Studio",
+      avatar: "/placeholder.svg?height=40&width=40",
+      timeAgo: "3 days ago",
+      risk: "Medium",
+      summary:
+        "A gaming company is seeking a creator to review their latest game. They offer a free copy of the game and a commission based on sales.",
+      riskColor: "bg-yellow-500",
+    },
+    {
+      id: 3,
+      company: "FitGear Co.",
+      title: "Sponsorship Request: FitGear Co.",
+      avatar: "/placeholder.svg?height=40&width=40",
+      timeAgo: "4 days ago",
+      risk: "Low",
+      summary:
+        "A fitness apparel company wants a creator to showcase their new activewear line. They are offering a product sponsorship and a discount code for the creator's audience.",
+      riskColor: "bg-green-500",
+    },
+    {
+      id: 4,
+      company: "FoodieExpress",
+      title: "Sponsorship Request: FoodieExpress",
+      avatar: "/placeholder.svg?height=40&width=40",
+      timeAgo: "5 days ago",
+      risk: "Medium",
+      summary:
+        "A food delivery service is looking for a creator to promote their app. They are offering a flat fee of $1,000 and a referral bonus.",
+      riskColor: "bg-yellow-500",
+    },
+    {
+      id: 5,
+      company: "Wanderlust Travel",
+      title: "Sponsorship Request: Wanderlust Travel",
+      avatar: "/placeholder.svg?height=40&width=40",
+      timeAgo: "6 days ago",
+      risk: "High",
+      summary:
+        "A travel agency is seeking a creator to document their trip to a tropical destination. They are offering an all-expenses-paid trip and a fee of $2,000.",
+      riskColor: "bg-red-500",
+    },
+  ]
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="flex h-screen bg-gray-900 text-white">
+      {/* Sidebar */}
+      <div className="w-80 bg-gray-800 p-6 flex flex-col">
+        <div className="mb-8">
+          <h1 className="text-xl font-semibold">CollabPilot<br></h1>
+        </div>
+
+        <nav className="flex-1 space-y-2 shadow-none">
+          {sidebarItems.map((item, index) => (
+            <div
+              key={index}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-colors ${
+                item.active ? "bg-gray-700 text-white" : "text-gray-400 hover:text-white hover:bg-gray-700"
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </nav>
+
+        <div className="mt-auto">
+          <div className="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer text-gray-400 hover:text-white hover:bg-gray-700 transition-colors">
+            <Settings className="w-5 h-5" />
+            <span>Settings</span>
+          </div>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Header */}
+        <div className="p-6 border-b border-gray-700">
+          <h2 className="text-2xl font-semibold mb-4">Inbox</h2>
+
+          {/* Search */}
+          <div className="relative mb-6">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Input placeholder="Search" className="pl-10 bg-gray-800 border-gray-600 text-white placeholder-gray-400" />
+          </div>
+
+          {/* Potential Revenue Card */}
+          <Card className="bg-gray-800 border-gray-700 mb-6">
+            <CardContent className="p-4">
+              <div className="text-gray-400 text-sm mb-1">Potential Revenue</div>
+              <div className="text-2xl font-bold">$8,000</div>
+            </CardContent>
+          </Card>
+
+          {/* Filter Tabs */}
+          <div className="flex gap-6">
+            <button className="text-white border-b-2 border-white pb-2">All</button>
+            <button className="text-gray-400 hover:text-white pb-2">Unread</button>
+            <button className="text-gray-400 hover:text-white pb-2">Starred</button>
+          </div>
+        </div>
+
+        {/* Email List */}
+        <div className="flex-1 overflow-y-auto">
+          {sponsorshipRequests.map((request) => (
+            <div
+              key={request.id}
+              className="flex items-start gap-4 p-6 border-b border-gray-700 hover:bg-gray-800 cursor-pointer transition-colors"
+            >
+              <Avatar className="w-12 h-12">
+                <AvatarImage src={request.avatar || "/placeholder.svg"} />
+                <AvatarFallback className="bg-gray-600">{request.company.charAt(0)}</AvatarFallback>
+              </Avatar>
+
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="font-medium text-white truncate">{request.title}</h3>
+                </div>
+
+                <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
+                  <span>{request.company}</span>
+                  <span>•</span>
+                  <span>{request.timeAgo}</span>
+                  <span>•</span>
+                  <div className="flex items-center gap-1">
+                    <span>Risk:</span>
+                    <Badge variant="secondary" className={`${request.riskColor} text-white text-xs px-2 py-0.5`}>
+                      {request.risk}
+                    </Badge>
+                  </div>
+                </div>
+
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  <span className="font-medium">Summary:</span> {request.summary}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   )
 }
